@@ -114,24 +114,23 @@
 
 ### 인덱스 시그니처 (Index Signature)
 
-Array 또는 object에 대한 
-Helps to describe Arrays or objects that are used as dictionaries.
+Array 또는 object에 대한 개체를 정의하는데 도움을 줍니다.
 
-If there are both an index signature and property and/or method signatures in an interface, the type of the index property value must also be a `supertype` of the type of the property value and/or method
+인터페이스에 인덱스 시그니처와 속성(property) 및 method 시그니처가 있는 경우, 인덱스 속성값의 유형도 모두 `슈퍼타입 (supertype)` 이어야 합니다.
 
 ```ts
 interface RepoInterface {
 
   [propName: string]: boolean
 
-  // 'number' is not assignable to string index type 'boolean'
+  // 'number' 는 문자열 인덱스 유형인 'boolean'에 할당할 수 없습니다.
   star: number
 
-  // '() => string' is not assignable to string index type 'boolean'
+  // '() => string' 은 문자열 인덱스 유형인 'boolean'에 할당할 수 없습니다.
   isCreated(): string
 }
 
-// You can resolve above problem like this
+// 이러한 문제를 다음과 같이 수정할 수 있습니다.
 
 interface RepoInterface {
   [propName: string]: number
@@ -139,7 +138,7 @@ interface RepoInterface {
   isCreated(): number // OK
 }
 
-// Or you can do this to your interface
+// 또는 interface에 다음과 같이 할당할 수 있습니다.
 
 interface RepoInterface {
   [propName: string]: boolean | number | string
